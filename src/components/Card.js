@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Card(props) {
   function handleCardClick() {
     props.onCardClick(props.card);
