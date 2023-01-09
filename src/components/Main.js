@@ -14,8 +14,7 @@ export default function Main(props) {
         setUserName(profileInfo.name);
         setUserDescription(profileInfo.about);
         setUserAvatar(profileInfo.avatar);
-        setCards(cards);
-        cards.reverse();
+        setCards(cards.reverse());
       })
       .catch((error) => {
         console.log(error);

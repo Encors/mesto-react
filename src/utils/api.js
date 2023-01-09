@@ -11,69 +11,73 @@ export class Api {
     };
   }
 
+  _request(url, options) {
+    return fetch(url, options).then(this._response);
+  }
+
   getInitialCards() {
-    return fetch(this._url + `/cards`, {
+    return this._request(this._url + `/cards`, {
       headers: this._headers,
-    }).then(this._response);
+    });
   }
 
   getProfileInfo() {
-    return fetch(this._url + "/users/me", {
+    return this._request(this._url + "/users/me", {
       headers: this._headers,
-    }).then(this._response);
+    });
   }
 
   putProfileInfo(name, job) {
-    return fetch(this._url + "/users/me", {
+    return this._request(this._url + "/users/me", {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({
         name: name,
         about: job,
       }),
-    }).then(this._response);
+    });
   }
 
   addNewCard(inputValues) {
-    return fetch(this._url + "/cards", {
+    return this._request(this._url + "/cards", {
       headers: this._headers,
       method: "POST",
       body: JSON.stringify({
         name: inputValues.nameCard,
         link: inputValues.linkCard,
       }),
-    }).then(this._response);
+    });
   }
 
   putLike(cardId) {
-    return fetch(this._url + `/cards/${cardId}/likes`, {
+    return this._request(this._url + `/cards/${cardId}/likes`, {
       headers: this._headers,
       method: "PUT",
-    }).then(this._response);
+    });
   }
 
   removeCard(cardId) {
-    return fetch(this._url + `/cards/${cardId}`, {
+    return this._request(this._url + `/cards/${cardId}`, {
       headers: this._headers,
       method: "DELETE",
-    }).then(this._response);
+    });
   }
 
   deleteLike(cardId) {
-    return fetch(this._url + `/cards/${cardId}/likes`, {
+    return this._request(this._url + `/cards/${cardId}/likes`, {
       headers: this._headers,
       method: "DELETE",
-    }).then(this._response);
+    });
   }
 
   setNewAvatar(inputValues) {
-    return fetch(this._url + `/users/me/avatar`, {
+    return this._request(this._url + `/users/me/avatar`, {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({
         avatar: inputValues.avatar,
       }),
-    }).then(this._response);
+    });
   }
 
   getAllNeededInfo() {
