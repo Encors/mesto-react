@@ -19,3 +19,4 @@ export default function ConfirmationPopup({ deletingCard, isOpen, onClose, isLoa
     ></PopupWithForm>
   );
 }
+
