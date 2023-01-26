@@ -21,30 +21,30 @@ export class Api {
     });
   }
 
-  getProfileInfo() {
+  getUserInfo() {
     return this._request(this._url + "/users/me", {
       headers: this._headers,
     });
   }
 
-  putProfileInfo(name, job) {
+  setUserInfo({ name, about }) {
     return this._request(this._url + "/users/me", {
       headers: this._headers,
       method: "PATCH",
       body: JSON.stringify({
         name: name,
-        about: job,
+        about: about,
       }),
     });
   }
 
-  addNewCard(inputValues) {
+  addNewCard({ name, link }) {
     return this._request(this._url + "/cards", {
       headers: this._headers,
       method: "POST",
       body: JSON.stringify({
-        name: inputValues.nameCard,
-        link: inputValues.linkCard,
+        name: name,
+        link: link,
       }),
     });
   }
@@ -80,8 +80,8 @@ export class Api {
     });
   }
 
-  getAllNeededInfo() {
-    return Promise.all([this.getProfileInfo(), this.getInitialCards()]);
+  getAllStartedInfo() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 }
 
