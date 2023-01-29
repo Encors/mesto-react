@@ -19,7 +19,10 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingEditProfilePopup, setLoadingEditProfilePopup] = useState(false);
+  const [loadingAddPlacePopup, setLoadingAddPlacePopup] = useState(false);
+  const [loadingConfirmationPopup, setLoadingConfirmationPopup] = useState(false);
+  const [loadingEditAvatarPopup, setLoadingEditAvatarPopup] = useState(false);
   const [isOpenConfirmationPopup, setIsOpenConfirmationPopup] = useState(false);
   const [deletingCard, setDeletingCard] = useState(null);
 
@@ -57,11 +60,30 @@ function App() {
     setIsOpenPlacePopup(true);
   }
 
-  function handleClosePopup(evt) {
-    if (evt.target.classList.contains("popup_opened") || evt.target.classList.contains("popup__close-btn")) {
-      closeAllPopups();
+  useEffect(() => {
+    function handelEscape(evt) {
+      if (evt.key === "Escape") {
+        closeAllPopups();
+      }
     }
-  }
+
+    function handleClosePopup(evt) {
+      if (
+        evt.target.classList.contains("popup_opened") ||
+        evt.target.classList.contains("popup__close-btn")
+      ) {
+        closeAllPopups();
+      }
+    }
+
+    document.addEventListener("mousedown", handleClosePopup);
+    document.addEventListener("keydown", handelEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handelEscape);
+      document.removeEventListener("mousedown", handleClosePopup);
+    };
+  }, []);
 
   function closeAllPopups() {
     setIsOpenAvatarPopup(false);
@@ -97,66 +119,68 @@ function App() {
   }
 
   function handleUpdateUser({ name, about }) {
-    setLoading(true);
+    setLoadingEditProfilePopup(true);
     api
       .setUserInfo({ name, about })
       .then((newData) => {
         setCurrentUser(newData);
+        closeAllPopups();
       })
-      .then(closeAllPopups)
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        setLoading(false);
+        setLoadingEditProfilePopup(false);
       });
   }
 
   function handleUpdateAvatar(value) {
-    setLoading(true);
+    setLoadingEditAvatarPopup(true);
     api
       .setNewAvatar(value)
       .then((newData) => {
         setCurrentUser(newData);
+        closeAllPopups();
       })
-      .then(closeAllPopups)
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        setLoading(false);
+        setLoadingEditAvatarPopup(false);
       });
   }
 
   function handleAddPlaceSubmit({ name, link }) {
-    setLoading(true);
+    setLoadingAddPlacePopup(true);
     api
       .addNewCard({ name, link })
       .then((newCard) => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
-      .then(closeAllPopups)
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        setLoading(false);
+        setLoadingAddPlacePopup(false);
       });
   }
 
   function handleCardDelete(deletingCard) {
-    setLoading(true);
+    setLoadingConfirmationPopup(true);
     api
       .removeCard(deletingCard._id)
       .then(() => {
-        setCards(cards.filter((card) => card._id !== deletingCard._id));
+        setCards((state) => {
+          return state.filter((card) => card._id !== deletingCard._id);
+        });
+        closeAllPopups();
       })
-      .then(closeAllPopups)
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        setLoading(false);
+        setLoadingConfirmationPopup(false);
       });
   }
 
@@ -174,11 +198,32 @@ function App() {
           onCardDelete={handleConfirmation}
         />
         <Footer />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isLoading={loading} />
-        <AddPlacePopup isOpen={isOpenPlacePopup} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} isLoading={loading} />
-        <ConfirmationPopup isOpen={isOpenConfirmationPopup} onClose={closeAllPopups} isLoading={loading} onCardDelete={handleCardDelete} deletingCard={deletingCard} />
-        <EditAvatarPopup isOpen={isOpenAvatarPopup} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isLoading={loading} />
-        <ImagePopup isOpen={isOpenSelectedCard} card={selectedCard} onClose={handleClosePopup} />
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
+          isLoading={loadingEditProfilePopup}
+        />
+        <AddPlacePopup
+          isOpen={isOpenPlacePopup}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
+          isLoading={loadingAddPlacePopup}
+        />
+        <ConfirmationPopup
+          isOpen={isOpenConfirmationPopup}
+          onClose={closeAllPopups}
+          isLoading={loadingConfirmationPopup}
+          onCardDelete={handleCardDelete}
+          deletingCard={deletingCard}
+        />
+        <EditAvatarPopup
+          isOpen={isOpenAvatarPopup}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+          isLoading={loadingEditAvatarPopup}
+        />
+        <ImagePopup isOpen={isOpenSelectedCard} card={selectedCard} onClose={closeAllPopups} />
       </div>
     </CurrentUserContext.Provider>
   );

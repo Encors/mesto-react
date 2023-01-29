@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 export default function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
@@ -10,6 +10,11 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }
 
     onAddPlace({ name: inputNameRef.current.value, link: inputLinkRef.current.value });
   }
+
+  useEffect(() => {
+    inputNameRef.current.value = "";
+    inputLinkRef.current.value = "";
+  }, [isOpen]);
 
   return (
     <PopupWithForm
@@ -33,7 +38,15 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }
         ref={inputNameRef}
       />
       <span id="name-card-error" className="error" />
-      <input type="url" className="popup__input popup__input_type_img-link" placeholder="Ссылка на картинку" name="linkCard" id="link-card" required ref={inputLinkRef} />
+      <input
+        type="url"
+        className="popup__input popup__input_type_img-link"
+        placeholder="Ссылка на картинку"
+        name="linkCard"
+        id="link-card"
+        required
+        ref={inputLinkRef}
+      />
       <span id="link-card-error" className="error" />
     </PopupWithForm>
   );

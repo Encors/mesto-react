@@ -1,7 +1,13 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm.js";
 
-export default function ConfirmationPopup({ deletingCard, isOpen, onClose, isLoading, onCardDelete }) {
+export default function ConfirmationPopup({
+  deletingCard,
+  isOpen,
+  onClose,
+  isLoading,
+  onCardDelete,
+}) {
   function handleSubmit(e) {
     e.preventDefault();
     onCardDelete(deletingCard);
@@ -14,9 +20,8 @@ export default function ConfirmationPopup({ deletingCard, isOpen, onClose, isLoa
       classSelector="confirm"
       formName="confirm"
       title={"Вы уверены?"}
-      submitBtnText={isLoading ? `Сохранение...` : `Да`}
+      submitBtnText={isLoading ? `Удаление...` : `Да`}
       onSubmit={handleSubmit}
     ></PopupWithForm>
   );
 }
-

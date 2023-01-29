@@ -2,17 +2,18 @@ export class Api {
   constructor({ baseUrl, headers }) {
     this._url = baseUrl;
     this._headers = headers;
-    this._response = (res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`);
-      }
-    };
+  }
+
+  _getResponse(res) {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Ошибка: ${res.status} ${res.statusText}`);
+    }
   }
 
   _request(url, options) {
-    return fetch(url, options).then(this._response);
+    return fetch(url, options).then(this._getResponse);
   }
 
   getInitialCards() {

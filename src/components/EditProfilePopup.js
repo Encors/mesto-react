@@ -10,7 +10,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoad
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function handleChangeName(e) {
     setName(e.target.value);
@@ -30,43 +30,41 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoad
   }
 
   return (
-    <>
-      <PopupWithForm
-        classSelector="edit-profile"
-        formName="profile"
-        title={"Редактировать профиль"}
-        submitBtnText={isLoading ? `Сохранение...` : `Сохранить`}
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={handleSubmit}
-      >
-        <input
-          type="text"
-          className="popup__input popup__input_type_name"
-          placeholder="Имя"
-          name="nameProfile"
-          id="name-profile"
-          required
-          minLength={2}
-          maxLength={40}
-          value={name}
-          onChange={handleChangeName}
-        />
-        <span id="name-profile-error" className="error" />
-        <input
-          type="text"
-          className="popup__input popup__input_type_job"
-          placeholder="О себе"
-          name="jobProfile"
-          id="job-profile"
-          required
-          minLength={2}
-          maxLength={200}
-          value={description}
-          onChange={handleChangeDescription}
-        />
-        <span id="job-profile-error" className="error" />
-      </PopupWithForm>
-    </>
+    <PopupWithForm
+      classSelector="edit-profile"
+      formName="profile"
+      title={"Редактировать профиль"}
+      submitBtnText={isLoading ? `Сохранение...` : `Сохранить`}
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
+      <input
+        type="text"
+        className="popup__input popup__input_type_name"
+        placeholder="Имя"
+        name="nameProfile"
+        id="name-profile"
+        required
+        minLength={2}
+        maxLength={40}
+        value={name || ""}
+        onChange={handleChangeName}
+      />
+      <span id="name-profile-error" className="error" />
+      <input
+        type="text"
+        className="popup__input popup__input_type_job"
+        placeholder="О себе"
+        name="jobProfile"
+        id="job-profile"
+        required
+        minLength={2}
+        maxLength={200}
+        value={description || ""}
+        onChange={handleChangeDescription}
+      />
+      <span id="job-profile-error" className="error" />
+    </PopupWithForm>
   );
 }
