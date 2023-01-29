@@ -3,7 +3,6 @@ import React from "react";
 export default function PopupWithForm({
   classSelector,
   isOpen,
-  onClose,
   formName,
   title,
   submitBtnText,
@@ -13,7 +12,7 @@ export default function PopupWithForm({
   return (
     <div className={`popup popup_type_${classSelector} ${isOpen ? "popup_opened" : ""} `}>
       <div className="popup__container">
-        <button className="popup__close-btn button" type="button" onClick={onClose}></button>
+        <button className="popup__close-btn button" type="button"></button>
         <h2 className="popup__title">{title}</h2>
         <form className="popup__form" name={formName} onSubmit={onSubmit}>
           {children}

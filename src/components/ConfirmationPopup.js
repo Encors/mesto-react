@@ -4,7 +4,6 @@ import PopupWithForm from "./PopupWithForm.js";
 export default function ConfirmationPopup({
   deletingCard,
   isOpen,
-  onClose,
   isLoading,
   onCardDelete,
 }) {
@@ -16,7 +15,6 @@ export default function ConfirmationPopup({
   return (
     <PopupWithForm
       isOpen={isOpen}
-      onClose={onClose}
       classSelector="confirm"
       formName="confirm"
       title={"Вы уверены?"}
