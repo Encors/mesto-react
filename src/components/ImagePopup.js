@@ -1,8 +1,9 @@
 import React from "react";
+import Popup from "./Popup";
 
-export default function ImagePopup({ isOpen, card }) {
+export default function ImagePopup({ isOpen, card, classSelector, onClose }) {
   return (
-    <div className={`popup popup_type_photo ${isOpen ? `popup_opened` : ""} `}>
+    <Popup isOpen={isOpen} classSelector={classSelector} onClose={onClose}>
       <div className="popup__container-photo">
         <button className="popup__close-btn button" type="button"></button>
         <figure className="popup__figure">
@@ -14,6 +15,6 @@ export default function ImagePopup({ isOpen, card }) {
           <figcaption className="popup__caption">{card.name}</figcaption>
         </figure>
       </div>
-    </div>
+    </Popup>
   );
 }

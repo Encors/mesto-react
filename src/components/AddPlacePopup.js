@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-export default function AddPlacePopup({ isOpen, onAddPlace, isLoading }) {
+export default function AddPlacePopup({ isOpen, onAddPlace, isLoading, onClose }) {
   const inputNameRef = useRef("");
   const inputLinkRef = useRef("");
 
@@ -24,6 +24,7 @@ export default function AddPlacePopup({ isOpen, onAddPlace, isLoading }) {
       submitBtnText={isLoading ? `Создание...` : `Создать`}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      onClose={onClose}
     >
       <input
         type="text"

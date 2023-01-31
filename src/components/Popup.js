@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function Popup({ children, isOpen, onClose }) {
+export default function Popup({ children, isOpen, onClose, classSelector }) {
   function handleClosePopup(evt) {
     if (
       evt.target.classList.contains("popup_opened") ||
@@ -23,5 +23,9 @@ export default function Popup({ children, isOpen, onClose }) {
     }
   }, [isOpen]);
 
-  return <>{children}</>;
+  return (
+    <div className={`popup popup_type_${classSelector} ${isOpen ? "popup_opened" : ""} `}>
+      {children}
+    </div>
+  );
 }

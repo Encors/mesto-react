@@ -6,6 +6,7 @@ export default function ConfirmationPopup({
   isOpen,
   isLoading,
   onCardDelete,
+  onClose,
 }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -20,6 +21,7 @@ export default function ConfirmationPopup({
       title={"Вы уверены?"}
       submitBtnText={isLoading ? `Удаление...` : `Да`}
       onSubmit={handleSubmit}
+      onClose={onClose}
     ></PopupWithForm>
   );
 }

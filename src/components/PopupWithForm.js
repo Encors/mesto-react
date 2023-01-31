@@ -1,4 +1,5 @@
 import React from "react";
+import Popup from "./Popup";
 
 export default function PopupWithForm({
   classSelector,
@@ -8,9 +9,10 @@ export default function PopupWithForm({
   submitBtnText,
   children,
   onSubmit,
+  onClose,
 }) {
   return (
-    <div className={`popup popup_type_${classSelector} ${isOpen ? "popup_opened" : ""} `}>
+    <Popup isOpen={isOpen} classSelector={classSelector} onClose={onClose}>
       <div className="popup__container">
         <button className="popup__close-btn button" type="button"></button>
         <h2 className="popup__title">{title}</h2>
@@ -21,6 +23,6 @@ export default function PopupWithForm({
           </button>
         </form>
       </div>
-    </div>
+    </Popup>
   );
 }
