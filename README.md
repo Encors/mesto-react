@@ -11,4 +11,7 @@
 - [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 - [Ссылка на сайт](https://encors.github.io/mesto-react)
 
-**Технологии:** CSS, HTML, javascript(React).
+**Технологии:**
+
+- CSS, HTML, javascript(React).
+- Сайт является адаптивно-отзывчивым (медиазапросы и резиновая верстка). Адаптирован под экраны с шириной 320 и 1280 пикселей.
