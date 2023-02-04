@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Encors/mesto-react/precache-manifest.020e676776d912c854f33889031dfaa5.js"
+  "/mesto-react/precache-manifest.3c738ae6210cdb97e479a4cdc6a8a5b8.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Encors/mesto-react/index.html", {
+workbox.routing.registerNavigationRoute("/mesto-react/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
