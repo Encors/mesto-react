@@ -24,10 +24,6 @@ self.__precacheManifest = [
     "url": "/Encors/mesto-react/static/media/Inter-Regular.3ac83020.woff"
   },
   {
-    "revision": "dc131113894217b5031000575d9de002",
-    "url": "/Encors/mesto-react/static/media/Inter-Regular.dc131113.woff2"
-  },
-  {
     "revision": "661569afe57a38e1529a775a465da20b",
     "url": "/Encors/mesto-react/static/media/Inter-Black.661569af.woff2"
   },
@@ -36,20 +32,28 @@ self.__precacheManifest = [
     "url": "/Encors/mesto-react/static/media/Inter-Black.d0b121f3.woff"
   },
   {
-    "revision": "b2fce4ac45f3d116cd48ec8d068ab723",
-    "url": "/Encors/mesto-react/static/media/AddButton.b2fce4ac.svg"
-  },
-  {
-    "revision": "6bfdb35467f51d3ba1f70f8d4a9c2b59",
-    "url": "/Encors/mesto-react/static/media/EditButton.6bfdb354.svg"
+    "revision": "dc131113894217b5031000575d9de002",
+    "url": "/Encors/mesto-react/static/media/Inter-Regular.dc131113.woff2"
   },
   {
     "revision": "75db5319e7e87c587019a5df08d7272c",
     "url": "/Encors/mesto-react/static/media/Inter-Medium.75db5319.woff2"
   },
   {
+    "revision": "c0638bea87a05fdfa2bb3bba2efe54e4",
+    "url": "/Encors/mesto-react/static/media/Inter-Medium.c0638bea.woff"
+  },
+  {
+    "revision": "b2fce4ac45f3d116cd48ec8d068ab723",
+    "url": "/Encors/mesto-react/static/media/AddButton.b2fce4ac.svg"
+  },
+  {
     "revision": "68fe0213bb2792e2c581fbd7b72f9969",
     "url": "/Encors/mesto-react/static/media/like.68fe0213.svg"
+  },
+  {
+    "revision": "6bfdb35467f51d3ba1f70f8d4a9c2b59",
+    "url": "/Encors/mesto-react/static/media/EditButton.6bfdb354.svg"
   },
   {
     "revision": "3d813f810a41032c140568c878fd7d85",
@@ -66,10 +70,6 @@ self.__precacheManifest = [
   {
     "revision": "d476a8b86d0b656cfa463c1148e96069",
     "url": "/Encors/mesto-react/static/media/edit_avatar.d476a8b8.svg"
-  },
-  {
-    "revision": "c0638bea87a05fdfa2bb3bba2efe54e4",
-    "url": "/Encors/mesto-react/static/media/Inter-Medium.c0638bea.woff"
   },
   {
     "revision": "7baba3c1428ee943536a8022d42f0985",
